@@ -1,0 +1,11 @@
+[user]
+	email = rutvik.c@browserstack.com
+	name = Rutvik Chandla
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[filesystem "Homebrew|21|/dev/disk3s1"]
+	timestampResolution = 3000 nanoseconds
+	minRacyThreshold = 0 nanoseconds

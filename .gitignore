@@ -1,0 +1,118 @@
+# Sensitive data and private keys
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+id_rsa*
+id_ed25519*
+known_hosts*
+*.token
+*.secret
+*.password
+
+# Temporary and cache files
+*.tmp
+*.bak
+*.backup
+*.pysave
+*zcompdump*
+.DS_Store
+Thumbs.db
+
+# History files
+.*_history
+.bash_history
+.zsh_history
+.python_history
+.psql_history
+.mysql_history
+.irb_history
+.node_repl_history
+.clickhouse-client-history
+.influx_history
+.rediscli_history
+
+# Runtime and temporary files
+.lesshst
+.wget-hsts
+.vault-token
+.CFUserTextEncoding
+.viminfo*
+.claude*
+
+# System-specific files
+.mobileprovision
+.irb-history
+.cshrc
+.mkshrc
+.tcshrc
+
+# Log files
+*.log
+
+# Editor temporary files
+#*
+.#*
+*~
+*.swp
+*.swo
+
+# macOS
+.AppleDouble
+.LSOverride
+Icon?
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Node.js (if any node_modules accidentally included)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if any python artifacts accidentally included)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Ruby (if any ruby artifacts accidentally included)
+*.gem
+.bundle/
+.ruby-version
+.ruby-gemset
+
+# Local scripts (these should be managed separately)
+scripts/local/
+
+# Personal configurations that shouldn't be shared
+config.local.*
+.zshrc.local
+.gitconfig.local
+.editorconfig.local
+
+# Any SSH private keys (double protection)
+ssh/id_rsa*
+ssh/id_ed25519*
+ssh/known_hosts*
+
+# Private certificates
+certs/private/
+*.pem
+*.key
+*.crt
+
+# Environment files
+.env
+.env.*
+!.env.example

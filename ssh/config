@@ -1,0 +1,109 @@
+Include /Users/ritvik/.config/colima/ssh_config
+
+# Added by OrbStack: 'orb' SSH host for Linux machines
+# This only works if it's at the top of ssh_config (before any Host blocks).
+# Comment this line if you don't want it to be added again.
+Include ~/.orbstack/ssh/config
+
+Host 35.237.170.76
+  User rutvik.c
+
+Host 54.155.167.51
+  ProxyJump jump-host
+  User rutvik.c
+  
+Host jump-host
+  HostName hop.browserstack.com
+  User rutvik.c
+
+Host app-host
+  HostName 10.67.164.33
+  User app
+  ProxyJump jump-host
+
+
+
+
+Host 10.67.164.33
+  HostName 10.67.164.33
+
+Host 54.155.167.51
+  ProxyJump jump-host
+  User rutvik.c
+
+Host 103.126.7.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 173.234.104.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 207.254.8.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 10.65.164.203
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 207.254.56.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 208.52.180.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 66.232.98.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 45.148.168.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 208.52.174.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 208.52.145.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 45.148.169.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 185.44.129.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 23.83.161.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 74.50.105.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 34.204.63.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+
+Host 185.44.131.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 10.64.*.*
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 185.200.102.197
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
+
+Host 10.72.160.61
+  ProxyJump rutvik.c@52.7.60.60
+  User rutvik.c
