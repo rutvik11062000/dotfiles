@@ -2,10 +2,16 @@
 # Set up fzf key bindings and fuzzy completion
 source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 function nvml() {
-  export NVM_DIR="$HOME/.nvm"
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
+    [ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
+
+    # ensure active nvm version is first
+    export PATH="$NVM_BIN:$PATH"
 }
+
+# portkey
+export PORTKEY_API_KEY='Zwla7QFANFO2cK/bYemY3JJrDfRc'
 
 # nvml
 
@@ -28,7 +34,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 # source /Users/ritvik/bscode/SeleniumHub/script/hub_machines_aliases.sh
-source ~/zsh-snap/znap.zsh
 
 
 # Path to your oh-my-zsh installation.
@@ -67,22 +72,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# gem path
-export PATH="$PATH:$HOME/.rvm/gems/ruby-3.0.0"
-export PATH="/usr/local/opt/openssl@1.0/bin:$PATH"
-export PATH="/Users/ritvik/Downloads/nvim-macos-x86_64/bin:$PATH"
+# ========== ENVIRONMENT VARIABLES ==========
 export LDFLAGS="-L/usr/local/opt/openssl@1.0/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.0/include"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export DISABLE_SPRING=true
-
-
-# personal alias
-alias r='cd ~/bscode/railsApp/ && code .'
-alias s='cd ~/bscode/SeleniumHub/ && code .'
-alias i='cd ~/bscode/infra-config/ && code .'
-export PATH=$PATH:/opt/homebrew/bin:/Users/ritvik/.rvm/gems/ruby-2.6.6/bin:/Users/ritvik/.rvm/gems/ruby-2.6.6@global/bin:/Users/ritvik/.rvm/rubies/ruby-2.6.6/bin:/usr/local/opt/openssl@1.0/bin:/Users/ritvik/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 # export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
@@ -91,7 +85,6 @@ export PATH="/Users/ritvik/.rd/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export ANDROID_HOME=$HOME/Library/Android/sdk
 
 winssh() {
  ssh -o PubkeyAcceptedAlgorithms=+ssh-rsa -p 4022 Administrator@"$1" 
@@ -118,30 +111,10 @@ bssh() {
   python3 /Users/ritvik/bscode/bstackssh/ssh_manager.py
 }
 
-vault_login() {
-    export VAULT_ADDR=https://gandalf.browserstack.com
-    # You'll need to set your GitHub token: export GITHUB_TOKEN=your_token_here
-    vault login -method=github token=$GITHUB_TOKEN > foo.txt
-}
-
-ssl_cert() {
-  vault_login()
-  vault kv get -field value /prod/certs/local_bsstag_com_crt > bsstag.com.crt
-  vault kv get -field value /prod/certs/local_bsstag_com_key > bsstag.com.key
-}
-
-vault_creds() {
-  vault_login
-  echo "greenmini: $(vault kv get -field value /prod/core/smokeping/users/greenmini/password)"
-  echo "mobile deploy: $(vault kv get -field value /prod/show/mobile/deploy-ui/pass/0)"
-  echo "deploy_admin: $(vault kv get -field value /prod/platform/deploy_admin)"
-  echo "kibana_viewer: $(vault kv get -field value /prod/chitragupta_keys/elasticsearch/kibana_viewer)"
-}
-
 # echo 'if which jenv > /dev/null; then eval "$(jenv init -)"; fi'
 export JAVA_HOME=$(/usr/libexec/java_home -v 11)
-export PATH=$PATH:/Users/ritvik/Downloads/elasticsearch-6.8.1/bin
-export PATH=$PATH:/Users/ritvik/Downloads/kibana-6.8.1-darwin-x86_64/bin
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export BDK_BASE_DIR="/Users/rutvik/bscode/bdk"
 
 # function ios_scrcpy() {
 #   ps aux | grep ssh | grep 45671 | awk '{print $2}' | xargs kill
@@ -168,11 +141,7 @@ export PATH=$PATH:/Users/ritvik/Downloads/kibana-6.8.1-darwin-x86_64/bin
 #   scrcpy -w --force-adb-forward -s $UDID -b1m -m800
 # }
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-export PATH="/usr/local/opt/libpq/bin:$PATH"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
 
 download_using_ip() {
   machine_ip=$1
@@ -181,22 +150,88 @@ download_using_ip() {
   ssh -J rutvik.c@hop.browserstack.com rutvik.c@$machine_ip "sudo chmod -R +r $root_path/*"
   scp -o ProxyJump=rutvik.c@hop.browserstack.com rutvik.c@$machine_ip:$download_path .
 }
-export PATH="/usr/local/opt/openssl@1.0/bin:$PATH"
-export PATH="/usr/local/opt/influxdb@1/bin:$PATH"
-export PATH="/usr/local/opt/mysql@8.0/bin:$PATH"
-export PATH="/Users/ritvik/Downloads/browsermob-proxy-2.1.4/bin:$PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/mysql@8.0/lib/pkgconfig"
+
+h_ide() {
+  cd /Users/rutvik/hcode/ideaas-frontend
+  tmux rename-window ideaas
+  nvml
+  nvm use
+}
+
+h_vs() {
+  cd /Users/rutvik/hcode/hackerrank-vscode/
+  tmux rename-window hvscode
+  nvml
+  nvm use
+}
+
+h_co() {
+    cd /Users/rutvik/hcode/hackerrank-vscode-copilot-chat
+    tmux rename-window hvscode
+    nvml
+    nvm use
+}
+
+alias o="opencode ."
+
 # Added by GDK bootstrap
 # source /Users/ritvik/.asdf/asdf.sh
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export BDK_BASE_DIR="/Users/ritvik/bscode/bdk"
 
-# Added by Windsurf
-export PATH="/Users/ritvik/.codeium/windsurf/bin:$PATH"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ritvik/bscode/automate-debugging-utilities/deploy-metrics/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ritvik/bscode/automate-debugging-utilities/deploy-metrics/google-cloud-sdk/path.zsh.inc'; fi
+# Google Cloud SDK
+if [ -f '/Users/rutvik/bscode/automate-debugging-utilities/deploy-metrics/google-cloud-sdk/path.zsh.inc' ]; then 
+  . '/Users/ritvik/bscode/automate-debugging-utilities/deploy-metrics/google-cloud-sdk/path.zsh.inc'
+fi
+if [ -f '/Users/rutvik/bscode/automate-debugging-utilities/deploy-metrics/google-cloud-sdk/completion.zsh.inc' ]; then 
+  . '/Users/ritvik/bscode/automate-debugging-utilities/deploy-metrics/google-cloud-sdk/completion.zsh.inc'
+fi
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/ritvik/bscode/automate-debugging-utilities/deploy-metrics/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ritvik/bscode/automate-debugging-utilities/deploy-metrics/google-cloud-sdk/completion.zsh.inc'; fi
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/rutvik/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/rutvik/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/rutvik/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/rutvik/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+DISABLE_AUTO_TITLE="true"
+
+# ========== CONSOLIDATED PATH SETUP ==========
+# Build PATH with all directories in priority order
+export PATH_CUSTOM=""
+PATH_CUSTOM="$PATH_CUSTOM:$HOME/.bun/bin"                                    # Bun
+PATH_CUSTOM="$PATH_CUSTOM:/Users/rutvik/.opencode/bin"                       # OpenCode
+PATH_CUSTOM="$PATH_CUSTOM:/Users/rutvik/.codeium/windsurf/bin"               # Windsurf
+PATH_CUSTOM="$PATH_CUSTOM:$HOME/.local/bin"                                  # Local bin
+PATH_CUSTOM="$PATH_CUSTOM:/opt/homebrew/bin"                                 # Homebrew
+PATH_CUSTOM="$PATH_CUSTOM:/opt/homebrew/sbin"                                # Homebrew sbin
+PATH_CUSTOM="$PATH_CUSTOM:/opt/homebrew/opt/openssl@3/bin"                   # OpenSSL 3
+PATH_CUSTOM="$PATH_CUSTOM:/opt/homebrew/opt/libpq/bin"                       # PostgreSQL (homebrew)
+PATH_CUSTOM="$PATH_CUSTOM:/usr/local/opt/openssl@1.0/bin"                    # OpenSSL 1.0
+PATH_CUSTOM="$PATH_CUSTOM:/usr/local/opt/influxdb@1/bin"                     # InfluxDB
+PATH_CUSTOM="$PATH_CUSTOM:/usr/local/opt/mysql@8.0/bin"                      # MySQL
+PATH_CUSTOM="$PATH_CUSTOM:/usr/local/opt/libpq/bin"                          # PostgreSQL (local)
+PATH_CUSTOM="$PATH_CUSTOM:/Users/ritvik/Downloads/browsermob-proxy-2.1.4/bin" # BrowserMob Proxy
+PATH_CUSTOM="$PATH_CUSTOM:/Users/ritvik/Downloads/elasticsearch-6.8.1/bin"   # Elasticsearch
+PATH_CUSTOM="$PATH_CUSTOM:/Users/ritvik/Downloads/kibana-6.8.1-darwin-x86_64/bin" # Kibana
+PATH_CUSTOM="$PATH_CUSTOM:/Users/ritvik/Downloads/nvim-macos-x86_64/bin"    # NeoVim
+PATH_CUSTOM="$PATH_CUSTOM:/Users/ritvik/.rvm/gems/ruby-3.0.0/bin"           # RVM Ruby 3.0
+PATH_CUSTOM="$PATH_CUSTOM:/Users/ritvik/.rvm/gems/ruby-2.6.6/bin"           # RVM Ruby 2.6
+PATH_CUSTOM="$PATH_CUSTOM:/Users/ritvik/.rvm/gems/ruby-2.6.6@global/bin"    # RVM Global 2.6
+PATH_CUSTOM="$PATH_CUSTOM:/Users/ritvik/.rvm/rubies/ruby-2.6.6/bin"         # RVM Rubies 2.6
+export EDITOR=nvim
+export PATH="$PATH_CUSTOM:$PATH"
+
+# bun completions
+[ -s "/Users/rutvik/.bun/_bun" ] && source "/Users/rutvik/.bun/_bun"
+
+export BUN_INSTALL="$HOME/.bun"
+export PKG_CONFIG_PATH="/usr/local/opt/mysql@8.0/lib/pkgconfig"

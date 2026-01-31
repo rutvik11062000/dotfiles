@@ -1,0 +1,49 @@
+Script started on Mon Dec  1 17:45:48 2025
+[1m[7m%[27m[1m[0m                                                       [0m[27m[24m[Jrutvik@Rutvik-Manoj-Chandla dotfiles % [K[?2004hccd scripts[1m/[0m[0m [?2004l
+[1m[7m%[27m[1m[0m                                                       [0m[27m[24m[Jrutvik@Rutvik-Manoj-Chandla scripts % [K[?2004hlls[?2004l
+setup.sh	sync.sh
+[1m[7m%[27m[1m[0m                                                       [0m[27m[24m[Jrutvik@Rutvik-Manoj-Chandla scripts % [K[?2004hbbash setup.sh[1m [0m[0m [?2004l
+🚀 Setting up Rutvik's dotfiles...
+Dotfiles directory: /Users/rutvik/hcode/dotfiles
+Backup directory: /Users/rutvik/dotfiles-backup-20251201-174558
+
+🔗 Setting up shell configuration files...
+🔗 Linking /Users/rutvik/hcode/dotfiles/.zshrc -> /Users/rutvik/.zshrc
+🔗 Linking /Users/rutvik/hcode/dotfiles/.p10k.zsh -> /Users/rutvik/.p10k.zsh
+🔗 Linking /Users/rutvik/hcode/dotfiles/.bashrc -> /Users/rutvik/.bashrc
+🔗 Linking /Users/rutvik/hcode/dotfiles/.bash_profile -> /Users/rutvik/.bash_profile
+🔗 Linking /Users/rutvik/hcode/dotfiles/.profile -> /Users/rutvik/.profile
+📦 Backing up /Users/rutvik/.zprofile to /Users/rutvik/dotfiles-backup-20251201-174558/.zprofile
+🔗 Linking /Users/rutvik/hcode/dotfiles/.zprofile -> /Users/rutvik/.zprofile
+🔗 Linking /Users/rutvik/hcode/dotfiles/.zlogin -> /Users/rutvik/.zlogin
+
+🖥️ Setting up development tool configuration...
+🔗 Linking /Users/rutvik/hcode/dotfiles/.tmux.conf -> /Users/rutvik/.tmux.conf
+🔗 Linking /Users/rutvik/hcode/dotfiles/.aerospace.toml -> /Users/rutvik/.aerospace.toml
+🔗 Linking /Users/rutvik/hcode/dotfiles/.gitconfig -> /Users/rutvik/.gitconfig
+
+📦 Setting up package manager configuration...
+📄 Copying /Users/rutvik/hcode/dotfiles/.default-gems -> /Users/rutvik/.default-gems
+📄 Copying /Users/rutvik/hcode/dotfiles/.tool-versions -> /Users/rutvik/.tool-versions
+📄 Copying /Users/rutvik/hcode/dotfiles/.npmrc -> /Users/rutvik/.npmrc
+📄 Copying /Users/rutvik/hcode/dotfiles/.yarnrc -> /Users/rutvik/.yarnrc
+
+⚙️ Setting up application configuration...
+🔗 Linking GitHub CLI configuration
+📄 Copying /Users/rutvik/hcode/dotfiles/ssh/config -> /Users/rutvik/.ssh/config
+
+🔧 Setting up scripts directory...
+Creating dotfiles sync helper...
+
+✅ Setup complete!
+
+📋 Next steps:
+1. Restart your shell or run 'source ~/.zshrc'
+2. Review and customize configuration files as needed
+3. Set up your SSH keys (they are not included in this repo)
+4. Configure any additional tools or credentials
+
+📦 Your original files have been backed up to: /Users/rutvik/dotfiles-backup-20251201-174558
+
+💡 To sync changes back to this repository, run: dotfiles-sync
+[1m[7m%[27m[1m[0m                                                       [0m[27m[24m[Jrutvik@Rutvik-Manoj-Chandla scripts % [K[?2004h
